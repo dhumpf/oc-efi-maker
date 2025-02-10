@@ -3,7 +3,7 @@ oc-efi-maker is a script to generate OpenCore EFI files, to Install MacOS on you
 ## Installaton
 Running the script locally:
 ```
-git clone https://github.com/itsmaclol/oc-efi-maker.git && cd oc-efi-maker
+git clone https://github.com/dhumpf/oc-efi-maker.git && cd oc-efi-maker
 chmod +x ./opencore.sh
 ./opencore.sh
 ```
