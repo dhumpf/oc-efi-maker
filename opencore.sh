@@ -231,41 +231,53 @@ macos_choice(){
     echo ""
     echo "################################################################"
     echo "Next, for the macOS Version."
-    echo "1: macOS 13 Ventura"
-    echo "2: macOS 12 Monterey"
-    echo "3: macOS 11 Big Sur"
-    echo "4: macOS 10.15 Catalina"
-    echo "5: macOS 10.14 Mojave"
+    echo "1: macOS 15 Sequoia"
+    echo "2: macOS 14 Sonoma"
+    echo "3: macOS 13 Ventura"
+    echo "4: macOS 12 Monterey"
+    echo "5: macOS 11 Big Sur"
+#    echo "4: macOS 10.15 Catalina"
+#    echo "5: macOS 10.14 Mojave"
     echo "Info: For any macOS lower than this, you will need to follow the guide yourself."
     echo "################################################################"
     read -r -p "Pick a number 1-5: " os_choice
     mkdir -p "$dir"/EFI/com.apple.recovery.boot
     case $os_choice in
         1 )
+            os_name="Sequoia"  
+            info "Downloading macOS Sequoia, please wait..."
+            python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-937A206F2EE63C01 -m 00000000000000000 download -o "$dir"/com.apple.recovery.boot
+        ;;
+        2 )
+            os_name="Sonoma"  
+            info "Downloading macOS Sonoma, please wait..."
+            python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-226CB3C6A851A671 -m 00000000000000000 download -o "$dir"/com.apple.recovery.boot
+        ;;
+        3 )
             os_name="Ventura"  
             info "Downloading macOS Ventura, please wait..."
             python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-4B682C642B45593E -m 00000000000000000 download -o "$dir"/com.apple.recovery.boot
         ;;
-        2 )
+        4 )
             os_name="Monterey"
             info "Downloading macOS Monterey, please wait..."
             python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-FFE5EF870D7BA81A -m 00000000000000000 download -o "$dir"/com.apple.recovery.boot
         ;;
-        3 )
+        5 )
             os_name="BigSur"
             info "Downloading macOS Big Sur, please wait..."
             python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-42FD25EABCABB274 -m 00000000000000000 download -o "$dir"/com.apple.recovery.boot
         ;;
-        4 )
-            os_name="Catalina"
-            info "Downloading macOS Catalina, please wait..."
-            python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-00BE6ED71E35EB86 -m 00000000000000000 download -o "$dir"/com.apple.recovery.boot
-        ;;
-        5 )
-            os_name="Mojave"
-            info "Downloading macOS Mojave, please wait..."
-            python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-7BA5B2DFE22DDD8C -m 00000000000KXPG00 download -o "$dir"/com.apple.recovery.boot
-        ;;
+#        4 )
+#            os_name="Catalina"
+#            info "Downloading macOS Catalina, please wait..."
+#            python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-00BE6ED71E35EB86 -m 00000000000000000 download -o "$dir"/com.apple.recovery.boot
+#        ;;
+#        5 )
+#            os_name="Mojave"
+#            info "Downloading macOS Mojave, please wait..."
+#            python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-7BA5B2DFE22DDD8C -m 00000000000KXPG00 download -o "$dir"/com.apple.recovery.boot
+#        ;;
         * )
             error "Invalid Choice"
             macos_choice
