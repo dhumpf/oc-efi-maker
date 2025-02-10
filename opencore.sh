@@ -249,7 +249,7 @@ macos_choice(){
             python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-937A206F2EE63C01 -m 00000000000000000 download -o "$dir"/com.apple.recovery.boot
         ;;
         2 )
-            os_name="Sonoma"  
+            os_name="Sonoma14.4"  
             info "Downloading macOS Sonoma, please wait..."
             python3 "$dir"/temp/OpenCore/Utilities/macrecovery/macrecovery.py -b Mac-226CB3C6A851A671 -m 00000000000000000 download -o "$dir"/com.apple.recovery.boot
         ;;
@@ -611,7 +611,7 @@ fi
 
 download_file "$USBTOOLBOX_KEXT_RELEASE_URL" "$dir"/temp/USBToolbox.zip
 unzip -q "$dir"/temp/USBToolbox.zip -d "$dir"/temp/USBToolBox
-mv "$dir"/temp/USBToolBox/USBToolbox.kext "$efi"/Kexts/USBToolBox.kext
+mv "$dir"/temp/USBToolBox/USBToolBox.kext "$efi"/Kexts/USBToolBox.kext
 
 wifi() {
     echo "################################################################"
@@ -635,7 +635,7 @@ wifi() {
         download_file "$ITLWM_RELEASE_URL" "$dir"/temp/AirportItlwm.zip
         info "Downloaded AirportItlwm-$os_name $ITLWM_RELEASE_NUMBER"
         unzip -q "$dir"/temp/AirportItlwm.zip -d "$dir"/temp/AirportItlwm
-        mv "$dir"/temp/AirportItlwm/Airportitlwm.kext "$efi"/Kexts/Airportitlwm.kext
+        mv "$dir"/temp/AirportItlwm/AirportItlwm.kext "$efi"/Kexts/Airportitlwm.kext
     ;;
     2 )
         
@@ -870,6 +870,12 @@ laptop_input_screen() {
             info "Downloaded AlpsHID"
             unzip -q "$dir"/temp/AlpsHID.zip -d "$dir"/temp/AlpsHID
             mv "$dir"/temp/AlpsHID/AlpsHID.kext "$efi"/Kexts/AlpsHID.kext
+        ;;
+        9 )
+            download_file "$VOODOOPS2_RELEASE_URL" "$dir"/temp/VoodooPS2Controller.zip
+            info "Downloaded VoodooPS2"
+            unzip -q "$dir"/temp/VoodooPS2Controller.zip -d "$dir"/temp/VoodooPS2Controller
+            mv "$dir"/temp/VoodooPS2Controller/VoodooPS2Controller.kext "$efi"/Kexts/VoodooPS2Controller.kext
         ;;
         * )
             error "Invalid Choice."
